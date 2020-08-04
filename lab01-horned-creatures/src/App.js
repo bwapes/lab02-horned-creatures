@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './Header.js'
+import Imagelist from './Imagelist.js'
 import './App.css';
+
+import images from './data.js'
+
+// const items = [
+//   '1',
+//   '2',
+//   '3'
+// ]
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <main>
+      <Header />
+      <Imagelist images={images}/>
+      {/* <ul>
+                {items.map(item => <li> toot </li>)}
+            </ul> */}
+      </main>
   );
 }
 
