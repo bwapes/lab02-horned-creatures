@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react'
 import Header from './Header.js'
 import Imagelist from './Imagelist.js'
+import Select from './select.js'
 import './App.css';
 
 import images from './data.js'
 
-// const items = [
-//   '1',
-//   '2',
-//   '3'
-// ]
+export default class App extends Component {
+    state = {
+        filter: images
+    }
 
-function App() {
-  return (
-      <main>
-      <Header />
-      <Imagelist images={images}/>
-      {/* <ul>
-                {items.map(item => <li> toot </li>)}
-            </ul> */}
-      </main>
-  );
+    handleFilterChange = (e) => {
+        const filterResult = e.target.value
+        this.setState({filter: images.filter(image => image.keyword === filterResult)})
+    }
+
+
+    render() {
+        return (
+        <main>
+            <Header />
+            <select onChange={this.handleFilterChange}>
+            <Select images={images} />
+            </select>
+            <Imagelist images={this.state.filter}/>
+        </main>
+        )
+    }
 }
 
-export default App;
