@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import Header from './Header.js'
+import Imagelist from './Imagelist.js'
+import Option from './Option.js'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import images from './data.js'
+
+export default class App extends Component {
+    state = {
+        filter: images
+    }
+
+    handleFilterChange = (e) => {
+        const filterResult = e.target.value
+        this.setState({filter: images.filter(image => image.keyword === filterResult)})
+    }
+
+
+    render() {
+        return (
+        <main>
+            <Header />
+            <div id="filter-section">
+                <p>Filter by Keyword</p>
+                <select onChange={this.handleFilterChange}>
+                <Option images={images} />
+                </select>
+            </div>
+            <Imagelist images={this.state.filter}/>
+        </main>
+        )
+    }
 }
 
-export default App;
