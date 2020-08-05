@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from './Header.js'
 import Imagelist from './Imagelist.js'
-import Select from './select.js'
+import Option from './Option.js'
 import './App.css';
 
 import images from './data.js'
@@ -21,9 +21,12 @@ export default class App extends Component {
         return (
         <main>
             <Header />
-            <select onChange={this.handleFilterChange}>
-            <Select images={images} />
-            </select>
+            <div id="filter-section">
+                <p>Filter by Keyword</p>
+                <select onChange={this.handleFilterChange}>
+                <Option images={images} />
+                </select>
+            </div>
             <Imagelist images={this.state.filter}/>
         </main>
         )
